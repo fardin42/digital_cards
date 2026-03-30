@@ -15,7 +15,7 @@
 
     <!-- Open Graph / Facebook / WhatsApp Sharing -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://mahavirjewellersnsk.com/" />
+    <meta property="og:url" content="https://pgrowmedia.com/digital_cards/mahavir-jewellers-2/" />
     <meta property="og:title" content="Mahavir Jewellers | Best Jewellery Shop in Nashik" />
     <meta property="og:description" content="Quality Gold, Diamond, Silver & Stone Jewellery. Tap to view our Digital Card." />
     <meta property="og:image" content="https://pgrowmedia.com/digital_cards/mahavir-jewellers/media/mahavir-jewellers-logo.png?v=1.1" />
@@ -27,7 +27,7 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://mahavirjewellersnsk.com/" />
+    <meta name="twitter:url" content="https://pgrowmedia.com/digital_cards/mahavir-jewellers-2/" />
     <meta name="twitter:title" content="Mahavir Jewellers | Best Jewellery Shop in Nashik" />
     <meta name="twitter:description" content="Quality Gold, Diamond, Silver & Stone Jewellery. Tap to view our Digital Card." />
     <meta name="twitter:image" content="https://pgrowmedia.com/digital_cards/mahavir-jewellers/media/mahavir-jewellers-logo.png?v=1.1" />
@@ -116,6 +116,29 @@
             background-color: black !important;
         }
     </style>
+    <!-- Gatekeeper: Protects unauthorized access -->
+    <script>
+      (async function() {
+        // Automatically extract slug from URL path (e.g. "jewellery/mahavir-jewellers-2")
+        const slug = window.location.pathname.split('/').filter(p => p && p !== 'index.html').join('/');
+        try {
+          const res = await fetch(`https://qysyznj5.ap-southeast.insforge.app/functions/gatekeeper?slug=${slug}`);
+          const data = await res.json();
+          if (data.allowed === false) {
+            document.body.innerHTML = `
+              <div style="height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#111; color:white; font-family:sans-serif; text-align:center; padding:20px;">
+                <h1 style="color:#ff4444; font-size:48px;">⚠️</h1>
+                <h2 style="margin-bottom:10px;">Card Suspended</h2>
+                <p style="opacity:0.7; max-width:300px; line-height:1.5;">${data.message}</p>
+                <a href="/" style="margin-top:30px; color:white; text-decoration:none; border:1px solid #444; padding:10px 20px; border-radius:30px;">Back to Home</a>
+              </div>
+            `;
+          }
+        } catch (e) {
+          console.error("Gatekeeper Check Failed:", e);
+        }
+      })();
+    </script>
 </head>
 <body>
     <div class="container" id="vcard-app">
@@ -128,56 +151,28 @@
             <div class="red-banner" style="height: 5px;"></div>
         </header>
 
-        <!-- Profile Section -->
-        <main class="profile-section">
-            <div class="profile-info">
-                <h1>Mahavir Jewellers</h1>
-                <p>Gold, Diamond, Silver & Stone Jewellery</p>
-                <div style="margin-top: 16px; display: flex; flex-direction: column; align-items: center; gap: 8px;">
-                    <div style="color: var(--gold); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Quality Assured</div>
-                    <img src="./media/huid_hallmark.png" alt="HUID Hallmarked Jewellery" style="height: 48px; width: auto; object-fit: contain;">
-                    <div style="color: var(--gold); font-weight: 600; font-size: 0.9em;">BIS Hallmarked Jewellery</div>
-                </div>
-            </div>
-        </main>
+        <!-- Profile Section removed per request -->
 
-        <!-- Quick Links Bar -->
-        <div class="quick-links">
-            <a href="tel:+917083644222" class="icon-btn" title="Call Us" aria-label="Call Mahavir Jewellers">
-                <i class="fa-solid fa-phone"></i>
-            </a>
-            <a href="https://wa.me/917083644222" class="icon-btn" title="WhatsApp" aria-label="Message Mahavir Jewellers on WhatsApp">
-                <i class="fa-brands fa-whatsapp"></i>
-            </a>
-            <a href="https://www.instagram.com/mahavirjewellersnsk/" target="_blank" class="icon-btn" title="Instagram" aria-label="Visit Mahavir Jewellers on Instagram">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="https://www.facebook.com/mahavirjewellersnashik" target="_blank" class="icon-btn" title="Facebook" aria-label="Visit Mahavir Jewellers on Facebook">
-                <i class="fa-brands fa-facebook-f"></i>
-            </a>
-            <a href="https://maps.app.goo.gl/Yh8Y6p7HrbhJkr1R9" target="_blank" class="icon-btn" title="Location" aria-label="Find Mahavir Jewellers on Google Maps">
-                <i class="fa-solid fa-location-dot"></i>
-            </a>
-        </div>
+        <!-- Quick Links Bar removed per request -->
 
 
         <!-- Contact Details -->
         <section id="contact">
             <h2><i class="fa-solid fa-address-book"></i> Connect with Us</h2>
             
-            <a href="tel:+917083644222" class="contact-row">
+            <a href="tel:+919579726251" class="contact-row">
                 <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
                 <div class="contact-detail">
                     <span class="contact-label">Mobile Number</span>
-                    <span class="contact-value">+91 70836 44222</span>
+                    <span class="contact-value">+91 95797 26251</span>
                 </div>
             </a>
 
-            <a href="https://wa.me/917083644222" target="_blank" class="contact-row">
+            <a href="https://wa.me/919579726251" class="contact-row">
                 <div class="contact-icon"><i class="fa-brands fa-whatsapp"></i></div>
                 <div class="contact-detail">
                     <span class="contact-label">WhatsApp Number</span>
-                    <span class="contact-value">+91 70836 44222</span>
+                    <span class="contact-value">+91 95797 26251</span>
                 </div>
             </a>
 
@@ -190,40 +185,7 @@
             </a>
         </section>
         
-        <!-- Operating Hours -->
-        <section id="hours">
-            <h2><i class="fa-solid fa-clock"></i> Business Hours</h2>
-            <div class="hours-table">
-                <div class="hour-row">
-                    <span class="day">Monday</span>
-                    <span class="time">10:00 AM - 08:30 PM</span>
-                </div>
-                <div class="hour-row">
-                    <span class="day">Tuesday</span>
-                    <span class="time">11:00 AM - 07:30 PM</span>
-                </div>
-                <div class="hour-row">
-                    <span class="day">Wednesday</span>
-                    <span class="time">10:00 AM - 08:30 PM</span>
-                </div>
-                <div class="hour-row">
-                    <span class="day">Thursday</span>
-                    <span class="time">10:00 AM - 08:30 PM</span>
-                </div>
-                <div class="hour-row">
-                    <span class="day">Friday</span>
-                    <span class="time">10:00 AM - 08:30 PM</span>
-                </div>
-                <div class="hour-row">
-                    <span class="day">Saturday</span>
-                    <span class="time">10:00 AM - 08:30 PM</span>
-                </div>
-                <div class="hour-row">
-                    <span class="day">Sunday</span>
-                    <span class="time">10:00 AM - 08:30 PM</span>
-                </div>
-            </div>
-        </section>
+        <!-- Operating Hours removed per request -->
 
         <!-- Bank Details Section -->
         <section id="bank-details">
@@ -267,12 +229,9 @@
 
     <!-- Sticky Bottom Bar -->
     <div class="bottom-bar">
-        <a href="https://wa.me/917083644222" class="btn btn-whatsapp" aria-label="Contact Mahavir Jewellers on WhatsApp">
+        <a href="https://wa.me/919579726251" class="btn btn-whatsapp" aria-label="Contact Mahavir Jewellers on WhatsApp">
             <i class="fa-brands fa-whatsapp"></i> WhatsApp
         </a>
-        <button class="btn btn-qr" onclick="showQR()" aria-label="Show Payment QR">
-            <i class="fa-solid fa-qrcode"></i> Scan QR
-        </button>
         <button class="btn btn-save" onclick="saveContact()" aria-label="Save Mahavir Jewellers' Contact info">
             <i class="fa-solid fa-user-plus"></i> Save
         </button>
@@ -337,7 +296,7 @@
         }
 
         function saveContact() {
-            const vcard = "BEGIN:VCARD\nVERSION:3.0\nFN:Mahavir Jewellers\nORG:Mahavir Jewellers\nTEL;TYPE=WORK;TYPE=VOICE:+917083644222\nTEL;TYPE=CELL;TYPE=VOICE:+917083644222\nADR;TYPE=WORK:;;Shiv Plaza, Dindori Rd, Swadya Nagar, Sneha Nagar;Nashik;Maharashtra;422004;India\nURL:https://mahavirjewellersnsk.com\nEND:VCARD";
+            const vcard = "BEGIN:VCARD\nVERSION:3.0\nFN:Mahavir Jewellers\nORG:Mahavir Jewellers\nTEL;TYPE=WORK;TYPE=VOICE:+919579726251\nTEL;TYPE=CELL;TYPE=VOICE:+919579726251\nADR;TYPE=WORK:;;Shiv Plaza, Dindori Rd, Swadya Nagar, Sneha Nagar;Nashik;Maharashtra;422004;India\nURL:https://mahavirjewellersnsk.com\nEND:VCARD";
             const blob = new Blob([vcard], { type: "text/vcard" });
             const url = URL.createObjectURL(blob);
             const newLink = document.createElement('a');

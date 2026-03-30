@@ -85,7 +85,8 @@
     <!-- Gatekeeper: Protects unauthorized access -->
     <script>
       (async function() {
-        const slug = "anay-jadhav";
+        // Automatically extract slug from URL path (e.g. "digital-marketing/anay-jadhav")
+        const slug = window.location.pathname.split('/').filter(p => p && p !== 'index.html').join('/');
         try {
           const res = await fetch(`https://qysyznj5.ap-southeast.insforge.app/functions/gatekeeper?slug=${slug}`);
           const data = await res.json();
