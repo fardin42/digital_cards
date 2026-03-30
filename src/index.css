@@ -35,6 +35,7 @@ body {
   margin-bottom: 20px;
   background: linear-gradient(135deg, #fff 0%, #a0aec0 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -172,4 +173,152 @@ th {
   background: var(--panel);
   border-radius: 16px;
   border: 1px solid var(--border);
+}
+
+/* Footer Styles */
+.footer {
+  margin-top: 80px;
+  padding: 40px 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-dim);
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-link {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+
+.footer-link:hover {
+  color: white;
+}
+
+/* Policy Content Styles */
+.policy-container {
+  padding: 40px 0;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.policy-content {
+  background: var(--panel);
+  padding: 40px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+}
+
+.policy-content h1, .policy-content h2, .policy-content h3 {
+  color: white;
+  margin-bottom: 16px;
+  margin-top: 32px;
+}
+
+.policy-content h1:first-child {
+  margin-top: 0;
+}
+
+.policy-content p, .policy-content li {
+  margin-bottom: 12px;
+}
+
+.policy-content ul {
+  padding-left: 20px;
+}
+/* Landing Page Hero */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.hero-content {
+  text-align: left;
+}
+
+.hero-preview {
+  position: relative;
+  width: 360px; /* Standard mobile width for previews */
+  max-width: 100%;
+  aspect-ratio: 9/16; /* Standard smartphone aspect ratio */
+  margin: 0 auto;
+  border: 14px solid #1a1a1a;
+  border-radius: 45px;
+  overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+  background: #fff;
+}
+
+/* Speaker Dot at the Top */
+.hero-preview::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 6px;
+  background: #333;
+  border-radius: 10px;
+  z-index: 10;
+}
+
+.hero-preview iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Thank You Page */
+.thank-you-card {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 600px;
+  margin: 100px auto;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  color: #2d3748;
+}
+
+.thank-you-card h1 {
+  color: #48bb78;
+  margin-bottom: 20px;
+}
+
+.live-link-box {
+  background: #f7fafc;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px dashed #cbd5e0;
+  margin: 20px 0;
+  font-family: monospace;
+  font-size: 1.1rem;
+  color: var(--primary);
+}
+
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-content {
+    text-align: center;
+  }
 }

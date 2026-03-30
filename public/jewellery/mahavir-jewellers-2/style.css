@@ -314,7 +314,7 @@ h2 {
   width: 100%;
   max-width: 480px;
   background-color: var(--white);
-  padding: 16px 20px;
+  padding: 8px 10px;
   display: flex;
   gap: 12px;
   box-shadow: 0 -10px 25px rgba(0,0,0,0.05);
@@ -322,32 +322,41 @@ h2 {
 }
 
 .btn {
-  flex: 1;
   height: 50px;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   font-weight: 700;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 13px;
   transition: all 0.2s;
   border: none;
   cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.btn i {
+  flex-shrink: 0;
 }
 
 .btn-whatsapp {
+  flex: 3;
   background-color: var(--whatsapp-color);
   color: white;
 }
 
 .btn-qr {
+  flex: 2;
   background-color: #007AFF;
   color: white;
 }
 
 .btn-save {
+  flex: 3;
   background-color: var(--dark-bg);
   color: white;
 }
@@ -452,5 +461,60 @@ h2 {
 @media (max-width: 480px) {
   .container {
     box-shadow: none;
+    width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  section {
+    padding: 24px 16px;
+  }
+  
+  .profile-info h1 {
+    font-size: 20px;
+  }
+  
+  .profile-info p {
+    font-size: 14px;
+  }
+  
+  h2 {
+    font-size: 16px;
+  }
+  
+  .btn {
+    font-size: 11px;
+    gap: 4px;
+    height: 46px;
+  }
+  
+  .bottom-bar {
+    padding: 8px 6px;
+    gap: 8px;
+  }
+  
+  .contact-value {
+    font-size: 13px;
+  }
+  
+  .bank-card {
+    padding: 16px;
+  }
+  
+  .bank-name {
+    font-size: 14px;
+  }
+  
+  .bank-info-row {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 340px) {
+  .btn span {
+    display: none;
+  }
+  .btn {
+    flex: 1 !important;
   }
 }
