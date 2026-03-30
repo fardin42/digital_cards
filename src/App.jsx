@@ -39,6 +39,16 @@ export default function App() {
   };
 
   useEffect(() => {
+    // Hidden Admin Routing: Access via ?admin=auth URL parameter
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('admin') === 'auth') {
+      setView('admin');
+      // Clear the URL parameter to keep it clean
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, []);
+
+  useEffect(() => {
     if (view === 'admin' && isAdminAuthenticated) fetchClients();
   }, [view, isAdminAuthenticated]);
 
@@ -69,10 +79,7 @@ export default function App() {
             <button className="btn-primary" onClick={() => setView('checkout')}>
               Create Your Card - ₹299/mo
             </button>
-            
-            <div style={{marginTop: '100px', cursor: 'pointer', opacity: 0.1}} onClick={() => setView('admin')}>
-              Admin Login
-            </div>
+            {/* Admin entry point removed from UI as requested */}
           </div>
           
           <div className="hero-preview">
@@ -121,10 +128,13 @@ export default function App() {
 
       {view === 'admin' && !isAdminAuthenticated && (
         <div className="auth-gate">
-          <h2>Admin Access</h2>
+          <div style={{ marginBottom: '24px' }}>
+            <h2 style={{ marginBottom: '8px' }}>Super Admin Login</h2>
+            <p style={{ color: 'var(--text-dim)', fontSize: '0.9rem' }}>Restricted access for developers only.</p>
+          </div>
           <form onSubmit={handleAdminLogin}>
             <div className="input-group">
-              <label>Enter Super Admin Password</label>
+              <label>Super Admin Password</label>
               <input 
                 type="password" 
                 value={adminPass} 
@@ -133,13 +143,13 @@ export default function App() {
                 required
               />
             </div>
-            <button className="btn-primary" style={{width: '100%'}}>Enter Dashboard</button>
+            <button className="btn-primary" style={{ width: '100%', height: '50px' }}>Enter Dashboard</button>
             <button 
               type="button"
               onClick={() => setView('home')} 
-              style={{marginTop: '20px', background: 'none', border: 'none', color: '#a0aec0', cursor: 'pointer'}}
+              style={{marginTop: '20px', background: 'none', border: 'none', color: '#a0aec0', cursor: 'pointer', fontWeight: '500'}}
             >
-              Cancel
+              ← Back to Site
             </button>
           </form>
         </div>
@@ -406,37 +416,56 @@ function CheckoutForm({ setView, setPaidSlug }) {
   };
 
   return (
-    <form onSubmit={handlePay}>
-      <div className="input-group">
-        <label>Full Name</label>
-        <input required type="text" value={form.name} onChange={e => setForm({...form, name: e.target.value})} />
+    <form onSubmit={handlePay} className="premium-form">
+      <div className="input-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+        <div className="input-group">
+          <label>Full Name</label>
+          <input required type="text" placeholder="John Doe" value={form.name} onChange={e => setForm({...form, name: e.target.value})} />
+        </div>
+        <div className="input-group">
+          <label>WhatsApp Number</label>
+          <input required type="text" placeholder="919876543210" value={form.whatsapp} onChange={e => setForm({...form, whatsapp: e.target.value})} />
+        </div>
       </div>
+
       <div className="input-group">
-        <label>Business Category</label>
+        <label>Email Address</label>
+        <input required type="email" placeholder="john@example.com" value={form.email} onChange={e => setForm({...form, email: e.target.value})} />
+      </div>
+
+      <div className="input-group">
+        <label>Card Templates / Category</label>
         <select required value={form.category} onChange={e => setForm({...form, category: e.target.value})} className="category-select">
           {CATEGORIES.map(cat => (
             <option key={cat} value={cat}>{cat.replace('-', ' ').toUpperCase()}</option>
           ))}
         </select>
       </div>
+
       <div className="input-group">
-        <label>Email Address</label>
-        <input required type="email" value={form.email} onChange={e => setForm({...form, email: e.target.value})} />
-      </div>
-      <div className="input-group">
-        <label>WhatsApp Number</label>
-        <input required type="text" value={form.whatsapp} onChange={e => setForm({...form, whatsapp: e.target.value})} />
-      </div>
-      <div className="input-group">
-        <label>URL Address (Final Link)</label>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: '#f9f9f9', padding: '8px', borderRadius: '8px', border: '1px solid #ddd' }}>
-          <span style={{ opacity: 0.6, fontSize: '0.85em', whiteSpace: 'nowrap' }}>mydigi.cards/{form.category}/</span>
-          <input required type="text" placeholder="your-name" value={form.slug} onChange={e => setForm({...form, slug: e.target.value.toLowerCase().replace(/ /g, '-')})} style={{ border: 'none', background: 'transparent', width: '100%', outline: 'none' }} />
+        <label>Your Custom URL Link</label>
+        <div className="url-input-container">
+          <span className="url-prefix">mydigi.cards/{form.category}/</span>
+          <input 
+            required 
+            type="text" 
+            placeholder="yourname" 
+            value={form.slug} 
+            onChange={e => setForm({...form, slug: e.target.value.toLowerCase().replace(/ /g, '-')})} 
+          />
         </div>
+        <p style={{ fontSize: '0.8rem', color: '#718096', marginTop: '8px' }}>
+           Example: mydigi.cards/{form.category}/{form.slug || 'yourname'}
+        </p>
       </div>
-      <button className="btn-primary" style={{width: '100%', marginTop: '20px'}}>
-        Pay & Create Card
+
+      <button className="btn-primary" style={{width: '100%', marginTop: '10px', height: '56px', fontSize: '1.2rem'}}>
+        Create My Card Now
       </button>
+      
+      <p style={{ textAlign: 'center', marginTop: '16px', fontSize: '0.85rem', color: '#718096' }}>
+        Safe & Secure Payment via Razorpay
+      </p>
     </form>
   )
 }
