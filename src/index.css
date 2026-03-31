@@ -144,7 +144,8 @@ body {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 4px rgba(225, 43, 44, 0.1);
-  background: #161a23;
+  background: white;
+  color: var(--text);
 }
 
 .url-input-container {
@@ -303,7 +304,7 @@ th {
 }
 
 .footer-link:hover {
-  color: white;
+  color: var(--primary);
 }
 
 /* Policy Content Styles */
@@ -323,7 +324,7 @@ th {
 }
 
 .policy-content h1, .policy-content h2, .policy-content h3 {
-  color: white;
+  color: var(--text);
   margin-bottom: 16px;
   margin-top: 32px;
 }
@@ -363,22 +364,15 @@ th {
   border: 14px solid #1a1a1a;
   border-radius: 45px;
   overflow: hidden;
-  box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+  box-shadow: 0 40px 100px rgba(0,0,0,0.15);
   background: #fff;
+  animation: float 6s ease-in-out infinite;
 }
 
-/* Speaker Dot at the Top */
-.hero-preview::before {
-  content: "";
-  position: absolute;
-  top: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 6px;
-  background: #333;
-  border-radius: 10px;
-  z-index: 10;
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
 }
 
 .hero-preview iframe {
@@ -405,14 +399,49 @@ th {
 }
 
 .live-link-box {
-  background: #f7fafc;
-  padding: 15px;
-  border-radius: 10px;
-  border: 1px dashed #cbd5e0;
-  margin: 20px 0;
-  font-family: monospace;
+  background: #fff5f5;
+  padding: 16px;
+  border-radius: 12px;
+  border: 2px solid #fed7d7;
+  margin: 24px 0;
+  font-family: inherit;
+  font-weight: 600;
   font-size: 1.1rem;
   color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.step-card {
+  text-align: left;
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 30px;
+}
+
+.step-item {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  color: var(--text-dim);
+}
+
+.step-number {
+  background: var(--primary);
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  margin-top: 2px;
 }
 
 @media (max-width: 900px) {

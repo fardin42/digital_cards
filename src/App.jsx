@@ -107,19 +107,32 @@ export default function App() {
 
       {view === 'thankyou' && (
         <section className="thank-you-view">
-          <div className="thank-you-card">
-            <h1>Payment Successful! 🎉</h1>
-            <p>Thank you for choosing MyDigi Cards. Your order has been received and our team is setting up your profile.</p>
+          <div className="thank-you-card" style={{ maxWidth: '500px', padding: '40px' }}>
+            <div style={{ fontSize: '3rem', marginBottom: '10px' }}>🎉</div>
+            <h1 style={{ fontSize: '2rem' }}>Payment Successful!</h1>
+            <p style={{ color: 'var(--text-dim)' }}>Your digital card is being generated. You can find it live at:</p>
             
             <div className="live-link-box">
-              mydigi.cards/{paidSlug}
+               mydigi.cards/{paidSlug}
             </div>
             
-            <p style={{marginTop: '20px', fontSize: '0.9rem', color: '#718096'}}>
-              <b>Next Steps:</b> Your card will be live at the above link within **24 hours**. Our team will contact you once it's ready.
-            </p>
+            <div className="step-card">
+              <h3 style={{ marginBottom: '15px', color: 'var(--text)' }}>What happens next?</h3>
+              <div className="step-item">
+                <span className="step-number">1</span>
+                <span>Our designers will start customizing your template.</span>
+              </div>
+              <div className="step-item">
+                <span className="step-number">2</span>
+                <span>You'll receive a WhatsApp message once it's live.</span>
+              </div>
+              <div className="step-item">
+                <span className="step-number">3</span>
+                <span>Your card will be active within 24 hours.</span>
+              </div>
+            </div>
             
-            <button className="btn-primary" onClick={() => setView('home')} style={{marginTop: '30px'}}>
+            <button className="btn-primary" onClick={() => setView('home')} style={{marginTop: '30px', width: '100%' }}>
               Back to Website
             </button>
           </div>
@@ -362,16 +375,23 @@ function CheckoutForm({ setView, setPaidSlug }) {
     'digital-marketing', 'education', 'event-management', 'finance', 
     'fitness-gym', 'food-beverage', 'healthcare', 'interior-design', 
     'it-services', 'jewellery', 'legal', 'photography', 
-    'real-estate', 'retail', 'travel-tourism', 'miscellaneous'
+    'real-estate', 'retail', 'travel-tourism', 'miscellaneous', 'others'
   ];
+
+  const [customCategory, setCustomCategory] = useState('');
 
   const handlePay = async (e) => {
     e.preventDefault();
     
     // Construct the final category-based slug
+    const catFinal = form.category === 'others' 
+      ? customCategory.toLowerCase().replace(/ /g, '-') 
+      : form.category;
+
     const finalForm = {
       ...form,
-      slug: `${form.category}/${form.slug}`
+      category: catFinal,
+      slug: `${catFinal}/${form.slug}`
     };
 
     // 1. Create Order
@@ -442,20 +462,33 @@ function CheckoutForm({ setView, setPaidSlug }) {
         </select>
       </div>
 
-      <div className="input-group">
-        <label>Your Custom URL Link</label>
-        <div className="url-input-container">
-          <span className="url-prefix">mydigi.cards/{form.category}/</span>
+      {form.category === 'others' && (
+        <div className="input-group">
+          <label>Specify Your Industry</label>
           <input 
             required 
             type="text" 
-            placeholder="yourname" 
+            placeholder="e.g. Architecture, Bakery..." 
+            value={customCategory} 
+            onChange={e => setCustomCategory(e.target.value)} 
+          />
+        </div>
+      )}
+
+      <div className="input-group">
+        <label>Your Custom URL Link</label>
+        <div className="url-input-container">
+          <span className="url-prefix">mydigi.cards/{form.category === 'others' ? (customCategory.toLowerCase().replace(/ /g, '-') || 'category') : form.category}/</span>
+          <input 
+            required 
+            type="text" 
+            placeholder="businessname" 
             value={form.slug} 
             onChange={e => setForm({...form, slug: e.target.value.toLowerCase().replace(/ /g, '-')})} 
           />
         </div>
         <p style={{ fontSize: '0.8rem', color: '#718096', marginTop: '8px' }}>
-           Example: mydigi.cards/{form.category}/{form.slug || 'yourname'}
+           Example: mydigi.cards/{form.category === 'others' ? (customCategory.toLowerCase().replace(/ /g, '-') || 'category') : form.category}/{form.slug || 'businessname'}
         </p>
       </div>
 
