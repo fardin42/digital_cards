@@ -375,7 +375,7 @@ function CheckoutForm({ setView, setPaidSlug }) {
     'digital-marketing', 'education', 'event-management', 'finance', 
     'fitness-gym', 'food-beverage', 'healthcare', 'interior-design', 
     'it-services', 'jewellery', 'legal', 'photography', 
-    'real-estate', 'retail', 'travel-tourism', 'miscellaneous', 'others'
+    'real-estate', 'retail', 'travel-tourism', 'others'
   ];
 
   const [customCategory, setCustomCategory] = useState('');
