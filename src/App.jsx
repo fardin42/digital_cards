@@ -66,11 +66,11 @@ export default function App() {
       {view === 'home' && (
         <section className="hero-grid">
           <div className="hero-content">
-            <h1>Modern Digital Business Cards for Professionals</h1>
-            <p style={{color: '#a0aec0', fontSize: '1.2rem', marginBottom: '30px'}}>
+            <h1 style={{ lineHeight: '1.1' }}>Modern Digital Business Cards for Professionals</h1>
+            <p style={{color: 'var(--text-dim)', fontSize: '1.1rem', marginBottom: '30px'}}>
               Share your contact details instantly with a sleek, one-page digital profile. Join 100+ businesses using MyDigi Cards.
             </p>
-            <ul style={{textAlign: 'left', color: '#a0aec0', marginBottom: '30px', paddingLeft: '20px'}}>
+            <ul style={{textAlign: 'left', color: 'var(--text-dim)', marginBottom: '30px', paddingLeft: '20px'}}>
               <li>✓ One-click WhatsApp & Save Contact</li>
               <li>✓ Integration with Social Media & Maps</li>
               <li>✓ Interactive Business Profiles</li>
@@ -417,7 +417,7 @@ function CheckoutForm({ setView, setPaidSlug }) {
 
   return (
     <form onSubmit={handlePay} className="premium-form">
-      <div className="input-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+      <div className="form-grid">
         <div className="input-group">
           <label>Full Name</label>
           <input required type="text" placeholder="John Doe" value={form.name} onChange={e => setForm({...form, name: e.target.value})} />
