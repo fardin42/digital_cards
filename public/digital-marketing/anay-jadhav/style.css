@@ -397,17 +397,17 @@ h2 {
   font-size: 14px;
   letter-spacing: 1.5px;
   cursor: pointer;
-  z-index: 998;
-  box-shadow: -4px 0 15px rgba(0,0,0,0.1);
+  z-index: 999;
+  box-shadow: 0 -4px 15px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
-  gap: 10px;
-  transition: all 0.2s;
+  gap: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media (min-width: 480px) {
   #vertical-share-btn {
-    right: calc(50% - 220px);
+    right: calc(50% - 218px);
   }
 }
 
