@@ -530,6 +530,9 @@ h2 i {
     
     .profile-section, .card {
         padding-right: 48px; /* Give space for vertical share button */
+        .card {
+      
+     }
     }
 
     .modal-content, .share-modal-content {
@@ -600,10 +603,14 @@ h2 i {
 
 /* Extra small devices */
 @media (max-width: 340px) {
-    .profile-section, .card {
-        padding-right: 42px; /* Adjusted spacing for extreme narrow */
+    /* .profile-section, .card {
+        padding-right: 42px; 
     }
-    
+     */
+     .card {
+        font-size: 14px !important;
+        
+     }
     .profile-section {
         padding-left: 15px;
     }
