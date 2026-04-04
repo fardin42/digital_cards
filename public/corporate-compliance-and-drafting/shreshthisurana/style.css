@@ -1,15 +1,15 @@
 :root {
-    --primary-blue: #1B365D; /* Navy Blue for trust and authority */
-    --accent-gold: #C5A059;  /* Gold for prestige */
-    --deep-black: #0F172A; 
+    --primary-color: #000000; /* Replaced Navy Blue with Black */
+    --accent-gold: #FFBD4A;   /* Updated Gold to #FFBD4A */
+    --deep-black: #000000; 
     --white: #FFFFFF;
-    --bg-light: #F8FAFC;
-    --text-main: #0F172A;
+    --bg-light: #FFFFFF;      /* Set background light to pure white */
+    --text-main: #000000;
     --text-muted: #64748B;
-    --glass-bg: rgba(255, 255, 255, 0.7);
-    --glass-border: rgba(226, 232, 240, 0.8);
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(0, 0, 0, 0.1);
     --font-main: 'Inter', sans-serif;
-    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 * {
@@ -127,7 +127,7 @@ body {
 }
 
 .profile-info p {
-    color: var(--primary-blue);
+    color: var(--accent-gold);
     font-weight: 700;
     font-size: 16px;
     margin-bottom: 8px;
@@ -140,7 +140,7 @@ body {
     border: 1px solid #cbd5e1;
     border-radius: 20px;
     font-size: 13px;
-    color: var(--primary-blue);
+    color: var(--primary-color);
     font-weight: 600;
 }
 
@@ -173,7 +173,7 @@ body {
     border-radius: 50%;
     background: var(--white);
     border: 1px solid #e2e8f0;
-    color: var(--primary-blue);
+    color: var(--primary-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -184,10 +184,10 @@ body {
 }
 
 .action-btn:hover {
-    background: var(--primary-blue);
+    background: var(--accent-gold);
     color: var(--white);
     transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(27, 54, 93, 0.2);
+    box-shadow: 0 8px 15px rgba(255, 189, 74, 0.3);
 }
 
 /* Cards for White Theme */
@@ -206,7 +206,7 @@ h2 {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: var(--primary-blue);
+    color: var(--primary-color);
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 700;
@@ -259,7 +259,7 @@ h2 i {
     aspect-ratio: 1;
     border-radius: 10px;
     background: var(--white);
-    color: var(--primary-blue);
+    color: var(--primary-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -305,8 +305,8 @@ h2 i {
 }
 
 .btn-whatsapp { background: #25D366; color: white; }
-.btn-save { background: var(--primary-blue); color: white; }
-.btn-qr { background: var(--accent-gold); color: white; }
+.btn-save { background: var(--primary-color); color: var(--accent-gold); border: 2px solid var(--accent-gold); }
+.btn-qr { background: var(--accent-gold); color: var(--primary-color); }
 
 .btn:active { transform: scale(0.96); }
 
@@ -339,17 +339,18 @@ h2 i {
     top: 40%;
     transform: rotate(-90deg) translateX(50%);
     transform-origin: right center;
-    background-color: var(--primary-blue);
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--accent-gold);
     padding: 12px 20px;
-    border: none;
+    border: 1px solid var(--accent-gold);
+    border-right: none;
     border-radius: 12px 12px 0 0;
     font-weight: 800;
     font-size: 14px;
     letter-spacing: 1.5px;
     cursor: pointer;
     z-index: 999;
-    box-shadow: 0 -4px 15px rgba(0,0,0,0.2);
+    box-shadow: -4px 0 15px rgba(0,0,0,0.1);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -405,7 +406,7 @@ h2 i {
 .modal-header h3 {
     font-size: 20px;
     font-weight: 800;
-    color: var(--primary-blue);
+    color: var(--primary-color);
     display: flex;
     align-items: center;
     gap: 10px;
@@ -433,7 +434,32 @@ h2 i {
 
 .close-modal:hover {
     background: #f1f5f9;
-    color: var(--primary-blue);
+    color: var(--primary-color);
+}
+
+/* Modal Footer Links */
+.modal-footer {
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid var(--glass-border);
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.modal-footer a {
+    color: var(--accent-gold);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.modal-footer a:hover {
+    text-decoration: underline;
+}
+
+.modal-footer span {
+    margin: 0 4px;
+    opacity: 0.8;
 }
 
 /* Share Grid */
