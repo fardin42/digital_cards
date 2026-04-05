@@ -58,6 +58,10 @@ export default function CheckoutForm({ setView, setPaidSlug }) {
           });
           const vData = await vRes.json();
           if (vData.success) {
+            // Persist success state in URL for refresh recovery
+            const newUrl = `${window.location.pathname}?status=success&slug=${finalForm.slug}`;
+            window.history.pushState({ path: newUrl }, '', newUrl);
+
             setPaidSlug(finalForm.slug);
             setView('thankyou');
           } else {

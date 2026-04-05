@@ -50,6 +50,17 @@ export default function App() {
       // Clear the URL parameter to keep it clean
       window.history.replaceState({}, document.title, window.location.pathname);
     }
+
+    // Success Redirect Handling: Persistence for Thank You page
+    const status = params.get('status');
+    const slug = params.get('slug');
+    if (status === 'success' && slug) {
+      setPaidSlug(slug);
+      setView('thankyou');
+      // Clean up the URL but keep it in history if needed, 
+      // or replace it to keep the address bar clean
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
   }, []);
 
   useEffect(() => {
