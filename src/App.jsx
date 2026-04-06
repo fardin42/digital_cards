@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { insforge } from './lib/insforge';
+import { PLAN_PRICE } from './lib/constants';
 
 // Views & Components
 import Home from './views/Home';
@@ -14,6 +15,7 @@ export default function App() {
   const [view, setView] = useState('home');
   const [loading, setLoading] = useState(false);
   const [clients, setClients] = useState([]);
+  const [monthlyIncome, setMonthlyIncome] = useState(0);
   const [adminPass, setAdminPass] = useState('');
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
   const [policyType, setPolicyType] = useState('privacy');
@@ -24,11 +26,25 @@ export default function App() {
     setLoading(true);
     const { data, error } = await insforge.database
       .from('profiles')
-      .select('name, whatsapp, email, created_at, cards(id, slug, status, subscriptions(last_payment_status, next_bill_date))')
+      .select('id, name, whatsapp, email, created_at, cards(id, slug, status, subscriptions(last_payment_status, next_bill_date))')
       .order('created_at', { ascending: false });
     
     if (!error) setClients(data || []);
     setLoading(false);
+  };
+
+  // Fetch real monthly income from subscriptions with 'captured' status this month
+  const fetchMonthlyIncome = async () => {
+    const now = new Date();
+    const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
+    const { data, error } = await insforge.database
+      .from('subscriptions')
+      .select('id, last_payment_status, created_at')
+      .in('last_payment_status', ['captured', 'success'])
+      .gte('created_at', startOfMonth);
+    if (!error && data) {
+      setMonthlyIncome(data.length * (PLAN_PRICE || 99));
+    }
   };
 
   const toggleCardStatus = async (cardId, currentStatus) => {
@@ -39,7 +55,23 @@ export default function App() {
       .eq('id', cardId);
     
     if (error) alert("Status Update Failed: " + error.message);
-    else fetchClients(); // Refresh list
+    else fetchClients();
+  };
+
+  const deleteClient = async (profileId) => {
+    // Cards FK has CASCADE delete, so deleting the profile auto-deletes its cards
+    const { error } = await insforge.database.from('profiles').delete().eq('id', profileId);
+    if (error) alert('Delete Failed: ' + error.message);
+    else fetchClients();
+  };
+
+  const updateClient = async (profileId, updates) => {
+    const { error } = await insforge.database
+      .from('profiles')
+      .update(updates)
+      .eq('id', profileId);
+    if (error) alert('Update Failed: ' + error.message);
+    else fetchClients();
   };
 
   useEffect(() => {
@@ -64,7 +96,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (view === 'admin' && isAdminAuthenticated) fetchClients();
+    if (view === 'admin' && isAdminAuthenticated) { fetchClients(); fetchMonthlyIncome(); }
   }, [view, isAdminAuthenticated]);
 
   const handleAdminLogin = (e) => {
@@ -110,6 +142,9 @@ export default function App() {
           <AdminDashboard 
             clients={clients} 
             toggleCardStatus={toggleCardStatus} 
+            deleteClient={deleteClient}
+            updateClient={updateClient}
+            monthlyIncome={monthlyIncome}
             setView={setView} 
           />
         );
