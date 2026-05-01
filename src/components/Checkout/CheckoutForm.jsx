@@ -80,23 +80,23 @@ export default function CheckoutForm({ setView, setPaidSlug }) {
     <form onSubmit={handlePay} className="premium-form">
       <div className="form-grid">
         <div className="input-group">
-          <label>Full Name</label>
-          <input required type="text" placeholder="John Doe" value={form.name} onChange={e => setForm({...form, name: e.target.value})} />
+          <label htmlFor="fullname">Full Name</label>
+          <input id="fullname" required type="text" placeholder="John Doe" value={form.name} onChange={e => setForm({...form, name: e.target.value})} />
         </div>
         <div className="input-group">
-          <label>WhatsApp Number</label>
-          <input required type="text" placeholder="919876543210" value={form.whatsapp} onChange={e => setForm({...form, whatsapp: e.target.value})} />
+          <label htmlFor="whatsapp">WhatsApp Number</label>
+          <input id="whatsapp" required type="text" placeholder="919876543210" value={form.whatsapp} onChange={e => setForm({...form, whatsapp: e.target.value})} />
         </div>
       </div>
 
       <div className="input-group">
-        <label>Email Address</label>
-        <input required type="email" placeholder="john@example.com" value={form.email} onChange={e => setForm({...form, email: e.target.value})} />
+        <label htmlFor="email">Email Address</label>
+        <input id="email" required type="email" placeholder="john@example.com" value={form.email} onChange={e => setForm({...form, email: e.target.value})} />
       </div>
 
       <div className="input-group">
-        <label>Card Templates / Category</label>
-        <select required value={form.category} onChange={e => setForm({...form, category: e.target.value})} className="category-select">
+        <label htmlFor="category">Card Templates / Category</label>
+        <select id="category" required value={form.category} onChange={e => setForm({...form, category: e.target.value})} className="category-select">
           {CATEGORIES.map(cat => (
             <option key={cat} value={cat}>{cat.replace('-', ' ').toUpperCase()}</option>
           ))}
@@ -105,8 +105,9 @@ export default function CheckoutForm({ setView, setPaidSlug }) {
 
       {form.category === 'others' && (
         <div className="input-group">
-          <label>Specify Your Industry</label>
+          <label htmlFor="customCategory">Specify Your Industry</label>
           <input 
+            id="customCategory"
             required 
             type="text" 
             placeholder="e.g. Architecture, Bakery..." 
@@ -117,10 +118,11 @@ export default function CheckoutForm({ setView, setPaidSlug }) {
       )}
 
       <div className="input-group">
-        <label>Your Custom URL Link</label>
+        <label htmlFor="slug">Your Custom URL Link</label>
         <div className="url-input-container">
           <span className="url-prefix">mydigi.cards/{form.category === 'others' ? (customCategory.toLowerCase().replace(/ /g, '-') || 'category') : form.category}/</span>
           <input 
+            id="slug"
             required 
             type="text" 
             placeholder="businessname" 
