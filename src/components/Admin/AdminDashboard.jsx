@@ -129,7 +129,7 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
           <div className="logo">
             <span className="logo-icon">💳</span> DigiCard
           </div>
-          <button className="sidebar-back-btn" onClick={() => setView('home')} title="Back to site">
+          <button className="sidebar-back-btn" aria-label="Back to site" onClick={() => setView('home')} title="Back to site">
             <ArrowLeft size={18} />
           </button>
         </div>
@@ -171,7 +171,7 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
             <thead>
               <tr>
                 <th style={{width: '40px'}}>
-                  <input type="checkbox" onChange={toggleSelectAll} checked={totalClients > 0 && selectedIds.length === totalClients} />
+                  <input type="checkbox" aria-label="Select all" onChange={toggleSelectAll} checked={totalClients > 0 && selectedIds.length === totalClients} />
                 </th>
                 <th>Client</th>
                 <th>Card Path</th>
@@ -192,14 +192,14 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
                 return (
                   <tr key={client.id || i} className={isSelected ? 'selected-row' : ''}>
                     <td>
-                      <input type="checkbox" checked={isSelected} onChange={(e) => { e.stopPropagation(); toggleSelect(i); }} />
+                      <input type="checkbox" aria-label="Select client" checked={isSelected} onChange={(e) => { e.stopPropagation(); toggleSelect(i); }} />
                     </td>
                     <td>
                       {isEditing ? (
                         <div className="edit-inline-group">
-                          <input className="edit-inline-input" value={editForm.name} onChange={e => setEditForm({...editForm, name: e.target.value})} placeholder="Name" />
-                          <input className="edit-inline-input" value={editForm.email} onChange={e => setEditForm({...editForm, email: e.target.value})} placeholder="Email" />
-                          <input className="edit-inline-input" value={editForm.whatsapp} onChange={e => setEditForm({...editForm, whatsapp: e.target.value})} placeholder="WhatsApp" />
+                          <input aria-label="Name" className="edit-inline-input" value={editForm.name} onChange={e => setEditForm({...editForm, name: e.target.value})} placeholder="Name" />
+                          <input aria-label="Email" className="edit-inline-input" value={editForm.email} onChange={e => setEditForm({...editForm, email: e.target.value})} placeholder="Email" />
+                          <input aria-label="WhatsApp" className="edit-inline-input" value={editForm.whatsapp} onChange={e => setEditForm({...editForm, whatsapp: e.target.value})} placeholder="WhatsApp" />
                         </div>
                       ) : (
                         <div className="client-cell">
@@ -228,14 +228,15 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
                     <td className="actions-cell">
                       {isEditing ? (
                         <div className="edit-actions">
-                          <button className="btn-save-edit" onClick={() => handleSaveEdit(client)} title="Save"><Save size={16} /></button>
-                          <button className="btn-cancel-edit" onClick={() => setEditingIdx(null)} title="Cancel"><X size={16} /></button>
+                          <button aria-label="Save changes" className="btn-save-edit" onClick={() => handleSaveEdit(client)} title="Save"><Save size={16} /></button>
+                          <button aria-label="Cancel editing" className="btn-cancel-edit" onClick={() => setEditingIdx(null)} title="Cancel"><X size={16} /></button>
                         </div>
                       ) : (
                         <div className="row-action-group">
                           {/* Distinct Suspend / Activate button */}
                           {card && (
                             <button
+                              aria-label={card.status === 'active' ? 'Suspend client' : 'Activate client'}
                               className={`btn-status-toggle ${card.status === 'active' ? 'btn-toggle-suspend' : 'btn-toggle-activate'}`}
                               onClick={(e) => handleToggleStatus(card, e)}
                               title={card.status === 'active' ? 'Suspend' : 'Activate'}
@@ -245,7 +246,7 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
                           )}
                           {/* Kebab menu for edit/delete */}
                           <div className="dropdown-container" ref={menuOpenIdx === i ? menuRef : null}>
-                            <button className="action-btn" onClick={(e) => { e.stopPropagation(); setMenuOpenIdx(menuOpenIdx === i ? null : i); }}>
+                            <button aria-label="More actions" aria-expanded={menuOpenIdx === i} aria-haspopup="true" className="action-btn" onClick={(e) => { e.stopPropagation(); setMenuOpenIdx(menuOpenIdx === i ? null : i); }}>
                               <MoreHorizontal size={18} />
                             </button>
                             {menuOpenIdx === i && (
