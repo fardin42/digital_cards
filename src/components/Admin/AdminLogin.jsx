@@ -9,8 +9,9 @@ export default function AdminLogin({ adminPass, setAdminPass, handleAdminLogin, 
       </div>
       <form onSubmit={handleAdminLogin}>
         <div className="input-group">
-          <label>Super Admin Password</label>
+          <label htmlFor="admin-password">Super Admin Password</label>
           <input 
+            id="admin-password"
             type="password" 
             value={adminPass} 
             onChange={(e) => setAdminPass(e.target.value)}
