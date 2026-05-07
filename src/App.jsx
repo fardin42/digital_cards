@@ -10,8 +10,11 @@ import AdminLogin from './components/Admin/AdminLogin';
 import AdminDashboard from './components/Admin/AdminDashboard';
 import PolicyContent from './components/Policy/PolicyContent';
 import Footer from './components/Layout/Footer';
+import ClientDashboard from './views/ClientDashboard';
+import ClientLogin from './components/Client/ClientLogin';
 
 export default function App() {
+  const [session, setSession] = useState(null);
   const [view, setView] = useState('home');
   const [loading, setLoading] = useState(false);
   const [clients, setClients] = useState([]);
@@ -75,12 +78,27 @@ export default function App() {
   };
 
   useEffect(() => {
+    // Automatically restore active session
+    insforge.auth.getCurrentUser().then(({ data }) => {
+      // SDK differences: fallback checks depending on if it wraps in 'session' or plain data
+      const sessionData = data?.session || data; 
+      if (sessionData && sessionData.user) {
+        setSession(sessionData);
+        setView('client'); // Auto-route to portal if they exist
+      }
+    });
+
     // Hidden Admin Routing: Access via ?admin=auth URL parameter
     const params = new URLSearchParams(window.location.search);
     if (params.get('admin') === 'auth') {
       setView('admin');
-      // Clear the URL parameter to keep it clean
       window.history.replaceState({}, document.title, window.location.pathname);
+    }
+    
+    // Quick Client Portal Access
+    if (params.get('client') === 'auth') {
+      setView('client');
+      // Intentionally NOT replacing the window history here so refreshing doesn't lose the page!
     }
 
     // Success Redirect Handling: Persistence for Thank You page
@@ -129,6 +147,24 @@ export default function App() {
 
       case 'thankyou':
         return <ThankYou paidSlug={paidSlug} setView={setView} />;
+
+      case 'client': {
+        const params = new URLSearchParams(window.location.search);
+        const isDevMode = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const forceAuth = params.get('client') === 'auth';
+        
+        // Development bypass so you don't have to log in on localhost every time you hit ?client=auth
+        if (!session && isDevMode && forceAuth) {
+           return <ClientDashboard setView={setView} devMode={true} />;
+        }
+        
+        // Strict production logic
+        if (!session) {
+           return <ClientLogin setSession={setSession} setView={setView} />;
+        }
+        
+        return <ClientDashboard setView={setView} session={session} />;
+      }
 
       case 'admin':
         return !isAdminAuthenticated ? (
