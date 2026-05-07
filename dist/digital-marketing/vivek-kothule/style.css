@@ -344,10 +344,30 @@ h2 {
 }
 
 @media (max-width: 340px) {
-  .btn span {
-    display: none;
-  }
   .btn {
     flex: 1 !important;
   }
+}
+
+/* Showreel Section */
+.showreel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.showreel-grid video {
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  background: #000;
+  object-fit: cover;
+  aspect-ratio: 9/16;
+}
+
+.btn-cr {
+  flex: 2;
+  background-color: #f1f1f1;
+  color: #333;
+  border: 1px solid #ddd;
 }
