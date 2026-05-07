@@ -129,7 +129,7 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
           <div className="logo">
             <span className="logo-icon">💳</span> DigiCard
           </div>
-          <button className="sidebar-back-btn" onClick={() => setView('home')} title="Back to site">
+          <button className="sidebar-back-btn" onClick={() => setView('home')} title="Back to site" aria-label="Back to site">
             <ArrowLeft size={18} />
           </button>
         </div>
@@ -228,8 +228,8 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
                     <td className="actions-cell">
                       {isEditing ? (
                         <div className="edit-actions">
-                          <button className="btn-save-edit" onClick={() => handleSaveEdit(client)} title="Save"><Save size={16} /></button>
-                          <button className="btn-cancel-edit" onClick={() => setEditingIdx(null)} title="Cancel"><X size={16} /></button>
+                          <button className="btn-save-edit" onClick={() => handleSaveEdit(client)} title="Save" aria-label="Save changes"><Save size={16} /></button>
+                          <button className="btn-cancel-edit" onClick={() => setEditingIdx(null)} title="Cancel" aria-label="Cancel editing"><X size={16} /></button>
                         </div>
                       ) : (
                         <div className="row-action-group">
@@ -245,7 +245,7 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
                           )}
                           {/* Kebab menu for edit/delete */}
                           <div className="dropdown-container" ref={menuOpenIdx === i ? menuRef : null}>
-                            <button className="action-btn" onClick={(e) => { e.stopPropagation(); setMenuOpenIdx(menuOpenIdx === i ? null : i); }}>
+                            <button className="action-btn" onClick={(e) => { e.stopPropagation(); setMenuOpenIdx(menuOpenIdx === i ? null : i); }} aria-label="More actions" aria-haspopup="menu" aria-expanded={menuOpenIdx === i}>
                               <MoreHorizontal size={18} />
                             </button>
                             {menuOpenIdx === i && (
