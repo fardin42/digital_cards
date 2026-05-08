@@ -12,7 +12,7 @@ import WorkingHoursBlock from './EditorBlocks/WorkingHoursBlock';
 const EditorForm = ({ profile, setProfile, templates }) => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
-      
+
       {/* 1. BASIC DETAILS */}
       <section style={{ borderBottom: '1px solid #edf2f7', paddingBottom: '30px' }}>
         <SectionHeader title="General Profile" color="#4a90e2" />
@@ -27,10 +27,10 @@ const EditorForm = ({ profile, setProfile, templates }) => {
           </div>
           <div style={{ gridColumn: '1 / -1', display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <Label htmlFor="input-bio">About Us / Bio (Rich Text)</Label>
-            <RichTextEditor 
+            <RichTextEditor
               id="input-bio"
-              value={profile.bio} 
-              onChange={(newBio) => setProfile({...profile, bio: newBio})} 
+              value={profile.bio}
+              onChange={(newBio) => setProfile({...profile, bio: newBio})}
             />
           </div>
         </div>
@@ -75,24 +75,24 @@ const EditorForm = ({ profile, setProfile, templates }) => {
         <SectionHeader title="Contact Information" color="#38B2AC" />
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <Label htmlFor="input-action-phone">Action Phone (e.g. +91...)</Label>
-            <Input id="input-action-phone" type="text" value={profile.contact_info.phone} onChange={(e) => setProfile({...profile, contact_info: {...profile.contact_info, phone: e.target.value}})} />
+            <Label>Action Phone (e.g. +91...)</Label>
+            <Input type="text" value={profile.contact_info.phone} onChange={(e) => setProfile({...profile, contact_info: {...profile.contact_info, phone: e.target.value}})} />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <Label htmlFor="input-whatsapp">WhatsApp Connect</Label>
-            <Input id="input-whatsapp" type="text" value={profile.whatsapp} onChange={(e) => setProfile({...profile, whatsapp: e.target.value})} />
+            <Label>WhatsApp Connect</Label>
+            <Input type="text" value={profile.whatsapp} onChange={(e) => setProfile({...profile, whatsapp: e.target.value})} />
           </div>
           <div style={{ gridColumn: '1 / -1', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <Label htmlFor="input-email">Email Address</Label>
-            <Input id="input-email" type="text" value={profile.contact_info.email} onChange={(e) => setProfile({...profile, contact_info: {...profile.contact_info, email: e.target.value}})} />
+            <Label>Email Address</Label>
+            <Input type="text" value={profile.contact_info.email} onChange={(e) => setProfile({...profile, contact_info: {...profile.contact_info, email: e.target.value}})} />
           </div>
           <div style={{ gridColumn: '1 / -1', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <Label htmlFor="input-office-address">Office Address</Label>
-            <Input id="input-office-address" type="text" value={profile.contact_info.office_address} onChange={(e) => setProfile({...profile, contact_info: {...profile.contact_info, office_address: e.target.value}})} />
+            <Label>Office Address</Label>
+            <Input type="text" value={profile.contact_info.office_address} onChange={(e) => setProfile({...profile, contact_info: {...profile.contact_info, office_address: e.target.value}})} />
           </div>
           <div style={{ gridColumn: '1 / -1', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <Label htmlFor="input-map-url">Google Maps URL Link</Label>
-            <Input id="input-map-url" type="text" value={profile.contact_info.map_url} onChange={(e) => setProfile({...profile, contact_info: {...profile.contact_info, map_url: e.target.value}})} />
+            <Label>Google Maps URL Link</Label>
+            <Input type="text" value={profile.contact_info.map_url} onChange={(e) => setProfile({...profile, contact_info: {...profile.contact_info, map_url: e.target.value}})} />
           </div>
         </div>
       </section>
@@ -108,7 +108,7 @@ const EditorForm = ({ profile, setProfile, templates }) => {
         <Label style={{ fontSize: '1.2rem', color: '#2d3748', marginBottom: '16px' }}>Template Engine</Label>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
           {templates.map((tpl) => (
-            <div 
+            <div
               key={tpl.id}
               onClick={() => setProfile({...profile, template_id: tpl.id})}
               style={{
@@ -128,7 +128,7 @@ const EditorForm = ({ profile, setProfile, templates }) => {
           ))}
         </div>
       </div>
-      
+
     </div>
   );
 };

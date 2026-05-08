@@ -14,3 +14,6 @@
 .trae
 .windsurf
 clients.zip
+
+node_modules
+dist
