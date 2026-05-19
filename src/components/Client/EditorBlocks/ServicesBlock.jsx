@@ -21,6 +21,8 @@ const ServicesBlock = ({ profile, setProfile }) => {
           <Button 
             variant="danger-light" 
             size="icon"
+            aria-label="Delete service"
+            title="Delete service"
             onClick={(e) => { 
               e.preventDefault(); 
               setProfile({...profile, services: profile.services.filter((_, i) => i !== idx)}); 
