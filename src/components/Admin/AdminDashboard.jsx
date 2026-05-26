@@ -129,7 +129,7 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
           <div className="logo">
             <span className="logo-icon">💳</span> DigiCard
           </div>
-          <button className="sidebar-back-btn" onClick={() => setView('home')} title="Back to site">
+          <button className="sidebar-back-btn" onClick={() => setView('home')} title="Back to site" aria-label="Back to site">
             <ArrowLeft size={18} />
           </button>
         </div>
@@ -237,6 +237,7 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
                           {card && (
                             <button
                               className={`btn-status-toggle ${card.status === 'active' ? 'btn-toggle-suspend' : 'btn-toggle-activate'}`}
+                              aria-label={card.status === 'active' ? 'Suspend client' : 'Activate client'}
                               onClick={(e) => handleToggleStatus(card, e)}
                               title={card.status === 'active' ? 'Suspend' : 'Activate'}
                             >
@@ -245,7 +246,12 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
                           )}
                           {/* Kebab menu for edit/delete */}
                           <div className="dropdown-container" ref={menuOpenIdx === i ? menuRef : null}>
-                            <button className="action-btn" onClick={(e) => { e.stopPropagation(); setMenuOpenIdx(menuOpenIdx === i ? null : i); }}>
+                            <button
+                              className="action-btn"
+                              aria-label="More actions"
+                              aria-expanded={menuOpenIdx === i}
+                              aria-haspopup="menu"
+                              onClick={(e) => { e.stopPropagation(); setMenuOpenIdx(menuOpenIdx === i ? null : i); }}>
                               <MoreHorizontal size={18} />
                             </button>
                             {menuOpenIdx === i && (
