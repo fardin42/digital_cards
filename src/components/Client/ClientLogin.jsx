@@ -76,8 +76,8 @@ export default function ClientLogin({ setSession, setView }) {
 
           <form onSubmit={verifyAccount} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <div className="input-group">
-              <label>6-Digit Code</label>
-              <input required type="text" placeholder="123456" value={otp} onChange={e => setOtp(e.target.value)} style={{ padding: '12px', fontSize: '1.2rem', letterSpacing: '4px', textAlign: 'center', boxSizing: 'border-box', width: '100%' }} />
+              <label htmlFor="otp">6-Digit Code</label>
+              <input id="otp" required type="text" placeholder="123456" value={otp} onChange={e => setOtp(e.target.value)} autoComplete="one-time-code" disabled={loading} style={{ padding: '12px', fontSize: '1.2rem', letterSpacing: '4px', textAlign: 'center', boxSizing: 'border-box', width: '100%' }} />
             </div>
             <button className="btn-primary" type="submit" disabled={loading} style={{ width: '100%', padding: '14px', fontSize: '1.1rem' }}>
               {loading ? 'Verifying...' : 'Complete Signup'}
@@ -112,17 +112,17 @@ export default function ClientLogin({ setSession, setView }) {
         <form onSubmit={submitCredentials} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           {isSignUp && (
              <div className="input-group">
-               <label>Full Name</label>
-               <input required type="text" placeholder="John Doe" value={form.name} onChange={e => setForm({...form, name: e.target.value})} style={{ padding: '12px', boxSizing: 'border-box', width: '100%' }} />
+               <label htmlFor="name">Full Name</label>
+               <input id="name" required type="text" placeholder="John Doe" value={form.name} onChange={e => setForm({...form, name: e.target.value})} autoComplete="name" disabled={loading} style={{ padding: '12px', boxSizing: 'border-box', width: '100%' }} />
              </div>
           )}
           <div className="input-group">
-            <label>Email Address</label>
-            <input required type="email" placeholder="registered@email.com" value={form.email} onChange={e => setForm({...form, email: e.target.value})} style={{ padding: '12px', boxSizing: 'border-box', width: '100%' }} />
+            <label htmlFor="email">Email Address</label>
+            <input id="email" required type="email" placeholder="registered@email.com" value={form.email} onChange={e => setForm({...form, email: e.target.value})} autoComplete="email" disabled={loading} style={{ padding: '12px', boxSizing: 'border-box', width: '100%' }} />
           </div>
           <div className="input-group">
-             <label>Password</label>
-             <input required type="password" placeholder="••••••••" value={form.password} onChange={e => setForm({...form, password: e.target.value})} style={{ padding: '12px', boxSizing: 'border-box', width: '100%' }} />
+             <label htmlFor="password">Password</label>
+             <input id="password" required type="password" placeholder="••••••••" value={form.password} onChange={e => setForm({...form, password: e.target.value})} autoComplete={isSignUp ? "new-password" : "current-password"} disabled={loading} style={{ padding: '12px', boxSizing: 'border-box', width: '100%' }} />
           </div>
           
           <button className="btn-primary" type="submit" disabled={loading} style={{ width: '100%', padding: '14px', fontSize: '1.1rem', marginTop: '10px' }}>
