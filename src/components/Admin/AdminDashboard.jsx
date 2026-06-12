@@ -171,7 +171,7 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
             <thead>
               <tr>
                 <th style={{width: '40px'}}>
-                  <input type="checkbox" onChange={toggleSelectAll} checked={totalClients > 0 && selectedIds.length === totalClients} />
+                  <input type="checkbox" aria-label="Select all clients" onChange={toggleSelectAll} checked={totalClients > 0 && selectedIds.length === totalClients} />
                 </th>
                 <th>Client</th>
                 <th>Card Path</th>
@@ -192,7 +192,7 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
                 return (
                   <tr key={client.id || i} className={isSelected ? 'selected-row' : ''}>
                     <td>
-                      <input type="checkbox" checked={isSelected} onChange={(e) => { e.stopPropagation(); toggleSelect(i); }} />
+                      <input type="checkbox" aria-label={`Select client ${client.name}`} checked={isSelected} onChange={(e) => { e.stopPropagation(); toggleSelect(i); }} />
                     </td>
                     <td>
                       {isEditing ? (
@@ -228,8 +228,8 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
                     <td className="actions-cell">
                       {isEditing ? (
                         <div className="edit-actions">
-                          <button className="btn-save-edit" onClick={() => handleSaveEdit(client)} title="Save"><Save size={16} /></button>
-                          <button className="btn-cancel-edit" onClick={() => setEditingIdx(null)} title="Cancel"><X size={16} /></button>
+                          <button className="btn-save-edit" onClick={() => handleSaveEdit(client)} title="Save" aria-label={`Save edits for ${client.name}`}><Save size={16} /></button>
+                          <button className="btn-cancel-edit" onClick={() => setEditingIdx(null)} title="Cancel" aria-label={`Cancel edits for ${client.name}`}><X size={16} /></button>
                         </div>
                       ) : (
                         <div className="row-action-group">
@@ -239,13 +239,20 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
                               className={`btn-status-toggle ${card.status === 'active' ? 'btn-toggle-suspend' : 'btn-toggle-activate'}`}
                               onClick={(e) => handleToggleStatus(card, e)}
                               title={card.status === 'active' ? 'Suspend' : 'Activate'}
+                              aria-label={`${card.status === 'active' ? 'Suspend' : 'Activate'} client ${client.name}`}
                             >
                               {card.status === 'active' ? <ShieldOff size={15}/> : <ShieldCheck size={15}/>}
                             </button>
                           )}
                           {/* Kebab menu for edit/delete */}
                           <div className="dropdown-container" ref={menuOpenIdx === i ? menuRef : null}>
-                            <button className="action-btn" onClick={(e) => { e.stopPropagation(); setMenuOpenIdx(menuOpenIdx === i ? null : i); }}>
+                            <button
+                              className="action-btn"
+                              onClick={(e) => { e.stopPropagation(); setMenuOpenIdx(menuOpenIdx === i ? null : i); }}
+                              aria-label="Open actions menu"
+                              aria-haspopup="true"
+                              aria-expanded={menuOpenIdx === i}
+                            >
                               <MoreHorizontal size={18} />
                             </button>
                             {menuOpenIdx === i && (
