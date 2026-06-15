@@ -113,12 +113,12 @@ const LivePreview = ({ profile, handleSaveContact }) => {
              {/* Circulation Buttons */}
              <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', marginTop: '25px' }}>
                 {[
-                  { icon: <Phone size={18}/>, link: `tel:${profile.contact_info.phone}` },
-                  { icon: <MessageCircle size={18}/>, link: `https://wa.me/${profile.whatsapp}` },
-                  { icon: <MapPin size={18}/>, link: profile.contact_info.map_url || '#' },
-                  { icon: <Mail size={18}/>, link: `mailto:${profile.contact_info.email}` }
+                  { icon: <Phone size={18}/>, link: `tel:${profile.contact_info.phone}`, label: 'Call Phone' },
+                  { icon: <MessageCircle size={18}/>, link: `https://wa.me/${profile.whatsapp}`, label: 'Message on WhatsApp' },
+                  { icon: <MapPin size={18}/>, link: profile.contact_info.map_url || '#', label: 'Open in Maps' },
+                  { icon: <Mail size={18}/>, link: `mailto:${profile.contact_info.email}`, label: 'Send Email' }
                 ].map((btn, i) => (
-                    <a key={i} href={btn.link} style={{ width: '45px', height: '45px', borderRadius: '50%', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#1a202c', boxShadow: '0 4px 10px rgba(0,0,0,0.06)', textDecoration: 'none' }}>
+                    <a key={i} href={btn.link} aria-label={btn.label} title={btn.label} style={{ width: '45px', height: '45px', borderRadius: '50%', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#1a202c', boxShadow: '0 4px 10px rgba(0,0,0,0.06)', textDecoration: 'none' }}>
                         {btn.icon}
                     </a>
                 ))}
