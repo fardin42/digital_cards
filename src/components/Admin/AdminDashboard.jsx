@@ -129,7 +129,7 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
           <div className="logo">
             <span className="logo-icon">💳</span> DigiCard
           </div>
-          <button className="sidebar-back-btn" onClick={() => setView('home')} title="Back to site">
+          <button className="sidebar-back-btn" onClick={() => setView('home')} title="Back to site" aria-label="Back to site">
             <ArrowLeft size={18} />
           </button>
         </div>
@@ -171,7 +171,7 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
             <thead>
               <tr>
                 <th style={{width: '40px'}}>
-                  <input type="checkbox" onChange={toggleSelectAll} checked={totalClients > 0 && selectedIds.length === totalClients} />
+                  <input type="checkbox" onChange={toggleSelectAll} checked={totalClients > 0 && selectedIds.length === totalClients} aria-label="Select all clients" />
                 </th>
                 <th>Client</th>
                 <th>Card Path</th>
@@ -192,7 +192,7 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
                 return (
                   <tr key={client.id || i} className={isSelected ? 'selected-row' : ''}>
                     <td>
-                      <input type="checkbox" checked={isSelected} onChange={(e) => { e.stopPropagation(); toggleSelect(i); }} />
+                      <input type="checkbox" checked={isSelected} onChange={(e) => { e.stopPropagation(); toggleSelect(i); }} aria-label={`Select client ${client.name}`} />
                     </td>
                     <td>
                       {isEditing ? (
@@ -238,14 +238,21 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
                             <button
                               className={`btn-status-toggle ${card.status === 'active' ? 'btn-toggle-suspend' : 'btn-toggle-activate'}`}
                               onClick={(e) => handleToggleStatus(card, e)}
-                              title={card.status === 'active' ? 'Suspend' : 'Activate'}
+                              title={card.status === 'active' ? 'Suspend client' : 'Activate client'}
+                              aria-label={card.status === 'active' ? 'Suspend client' : 'Activate client'}
                             >
                               {card.status === 'active' ? <ShieldOff size={15}/> : <ShieldCheck size={15}/>}
                             </button>
                           )}
                           {/* Kebab menu for edit/delete */}
                           <div className="dropdown-container" ref={menuOpenIdx === i ? menuRef : null}>
-                            <button className="action-btn" onClick={(e) => { e.stopPropagation(); setMenuOpenIdx(menuOpenIdx === i ? null : i); }}>
+                            <button
+                              className="action-btn"
+                              onClick={(e) => { e.stopPropagation(); setMenuOpenIdx(menuOpenIdx === i ? null : i); }}
+                              aria-label="Client actions"
+                              aria-expanded={menuOpenIdx === i}
+                              aria-haspopup="true"
+                            >
                               <MoreHorizontal size={18} />
                             </button>
                             {menuOpenIdx === i && (
