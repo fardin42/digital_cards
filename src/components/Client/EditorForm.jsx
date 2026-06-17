@@ -18,12 +18,12 @@ const EditorForm = ({ profile, setProfile, templates }) => {
         <SectionHeader title="General Profile" color="#4a90e2" />
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <Label>Full Name</Label>
-            <Input type="text" value={profile.name} onChange={(e) => setProfile({...profile, name: e.target.value})} />
+            <Label htmlFor="fullname">Full Name</Label>
+            <Input id="fullname" type="text" value={profile.name} onChange={(e) => setProfile({...profile, name: e.target.value})} />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <Label>Company Name (Subtitle)</Label>
-            <Input type="text" value={profile.company_name} onChange={(e) => setProfile({...profile, company_name: e.target.value})} />
+            <Label htmlFor="companyName">Company Name (Subtitle)</Label>
+            <Input id="companyName" type="text" value={profile.company_name} onChange={(e) => setProfile({...profile, company_name: e.target.value})} />
           </div>
           <div style={{ gridColumn: '1 / -1', display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <Label>About Us / Bio (Rich Text)</Label>
@@ -40,16 +40,16 @@ const EditorForm = ({ profile, setProfile, templates }) => {
         <SectionHeader title="Theme & Branding" color="#F6AD55" />
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <Label>Category Tag</Label>
-            <Input type="text" value={profile.theme_config.category} onChange={(e) => setProfile({...profile, theme_config: { ...profile.theme_config, category: e.target.value }})} />
+            <Label htmlFor="categoryTag">Category Tag</Label>
+            <Input id="categoryTag" type="text" value={profile.theme_config.category} onChange={(e) => setProfile({...profile, theme_config: { ...profile.theme_config, category: e.target.value }})} />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <Label>Badge Label</Label>
-            <Input type="text" value={profile.theme_config.badge_text} onChange={(e) => setProfile({...profile, theme_config: { ...profile.theme_config, badge_text: e.target.value }})} placeholder="e.g. BNI Dynamic Member" />
+            <Label htmlFor="badgeLabel">Badge Label</Label>
+            <Input id="badgeLabel" type="text" value={profile.theme_config.badge_text} onChange={(e) => setProfile({...profile, theme_config: { ...profile.theme_config, badge_text: e.target.value }})} placeholder="e.g. BNI Dynamic Member" />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <Label>Primary Color (Hex)</Label>
-            <Input type="color" value={profile.theme_config.primary_color} onChange={(e) => setProfile({...profile, theme_config: { ...profile.theme_config, primary_color: e.target.value }})} style={{ padding: '2px', height: '40px' }} />
+            <Label htmlFor="primaryColor">Primary Color (Hex)</Label>
+            <Input id="primaryColor" type="color" value={profile.theme_config.primary_color} onChange={(e) => setProfile({...profile, theme_config: { ...profile.theme_config, primary_color: e.target.value }})} style={{ padding: '2px', height: '40px' }} />
           </div>
         </div>
       </section>
@@ -74,24 +74,24 @@ const EditorForm = ({ profile, setProfile, templates }) => {
         <SectionHeader title="Contact Information" color="#38B2AC" />
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <Label>Action Phone (e.g. +91...)</Label>
-            <Input type="text" value={profile.contact_info.phone} onChange={(e) => setProfile({...profile, contact_info: {...profile.contact_info, phone: e.target.value}})} />
+            <Label htmlFor="actionPhone">Action Phone (e.g. +91...)</Label>
+            <Input id="actionPhone" type="text" value={profile.contact_info.phone} onChange={(e) => setProfile({...profile, contact_info: {...profile.contact_info, phone: e.target.value}})} />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <Label>WhatsApp Connect</Label>
-            <Input type="text" value={profile.whatsapp} onChange={(e) => setProfile({...profile, whatsapp: e.target.value})} />
+            <Label htmlFor="whatsappConnect">WhatsApp Connect</Label>
+            <Input id="whatsappConnect" type="text" value={profile.whatsapp} onChange={(e) => setProfile({...profile, whatsapp: e.target.value})} />
           </div>
           <div style={{ gridColumn: '1 / -1', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <Label>Email Address</Label>
-            <Input type="text" value={profile.contact_info.email} onChange={(e) => setProfile({...profile, contact_info: {...profile.contact_info, email: e.target.value}})} />
+            <Label htmlFor="emailAddress">Email Address</Label>
+            <Input id="emailAddress" type="text" value={profile.contact_info.email} onChange={(e) => setProfile({...profile, contact_info: {...profile.contact_info, email: e.target.value}})} />
           </div>
           <div style={{ gridColumn: '1 / -1', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <Label>Office Address</Label>
-            <Input type="text" value={profile.contact_info.office_address} onChange={(e) => setProfile({...profile, contact_info: {...profile.contact_info, office_address: e.target.value}})} />
+            <Label htmlFor="officeAddress">Office Address</Label>
+            <Input id="officeAddress" type="text" value={profile.contact_info.office_address} onChange={(e) => setProfile({...profile, contact_info: {...profile.contact_info, office_address: e.target.value}})} />
           </div>
           <div style={{ gridColumn: '1 / -1', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <Label>Google Maps URL Link</Label>
-            <Input type="text" value={profile.contact_info.map_url} onChange={(e) => setProfile({...profile, contact_info: {...profile.contact_info, map_url: e.target.value}})} />
+            <Label htmlFor="googleMapsUrl">Google Maps URL Link</Label>
+            <Input id="googleMapsUrl" type="text" value={profile.contact_info.map_url} onChange={(e) => setProfile({...profile, contact_info: {...profile.contact_info, map_url: e.target.value}})} />
           </div>
         </div>
       </section>
