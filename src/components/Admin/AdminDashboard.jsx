@@ -154,8 +154,8 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
         <div className="main-header">
           <h1>Clients</h1>
           <div className="header-actions">
-            <button className="btn-table-action"><Download size={16} /> Import</button>
-            <button className="btn-table-action"><Upload size={16} /> Export</button>
+            <button className="btn-table-action" aria-label="Import clients"><Download size={16} /> Import</button>
+            <button className="btn-table-action" aria-label="Export clients"><Upload size={16} /> Export</button>
           </div>
         </div>
 
@@ -228,8 +228,8 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
                     <td className="actions-cell">
                       {isEditing ? (
                         <div className="edit-actions">
-                          <button className="btn-save-edit" onClick={() => handleSaveEdit(client)} title="Save"><Save size={16} /></button>
-                          <button className="btn-cancel-edit" onClick={() => setEditingIdx(null)} title="Cancel"><X size={16} /></button>
+                          <button className="btn-save-edit" aria-label="Save changes" onClick={() => handleSaveEdit(client)} title="Save"><Save size={16} /></button>
+                          <button className="btn-cancel-edit" aria-label="Cancel editing" onClick={() => setEditingIdx(null)} title="Cancel"><X size={16} /></button>
                         </div>
                       ) : (
                         <div className="row-action-group">
@@ -237,6 +237,7 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
                           {card && (
                             <button
                               className={`btn-status-toggle ${card.status === 'active' ? 'btn-toggle-suspend' : 'btn-toggle-activate'}`}
+                              aria-label={card.status === 'active' ? 'Suspend client' : 'Activate client'}
                               onClick={(e) => handleToggleStatus(card, e)}
                               title={card.status === 'active' ? 'Suspend' : 'Activate'}
                             >
@@ -245,7 +246,7 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
                           )}
                           {/* Kebab menu for edit/delete */}
                           <div className="dropdown-container" ref={menuOpenIdx === i ? menuRef : null}>
-                            <button className="action-btn" onClick={(e) => { e.stopPropagation(); setMenuOpenIdx(menuOpenIdx === i ? null : i); }}>
+                            <button className="action-btn" aria-label="More actions" aria-expanded={menuOpenIdx === i} aria-haspopup="true" onClick={(e) => { e.stopPropagation(); setMenuOpenIdx(menuOpenIdx === i ? null : i); }}>
                               <MoreHorizontal size={18} />
                             </button>
                             {menuOpenIdx === i && (
