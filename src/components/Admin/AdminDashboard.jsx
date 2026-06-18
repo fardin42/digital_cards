@@ -245,7 +245,14 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
                           )}
                           {/* Kebab menu for edit/delete */}
                           <div className="dropdown-container" ref={menuOpenIdx === i ? menuRef : null}>
-                            <button className="action-btn" onClick={(e) => { e.stopPropagation(); setMenuOpenIdx(menuOpenIdx === i ? null : i); }}>
+                            <button
+                              className="action-btn"
+                              aria-label="More actions"
+                              title="More actions"
+                              aria-haspopup="true"
+                              aria-expanded={menuOpenIdx === i}
+                              onClick={(e) => { e.stopPropagation(); setMenuOpenIdx(menuOpenIdx === i ? null : i); }}
+                            >
                               <MoreHorizontal size={18} />
                             </button>
                             {menuOpenIdx === i && (
