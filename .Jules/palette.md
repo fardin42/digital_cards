@@ -1,3 +1,4 @@
 ## 2026-05-01 - Form Accessibility
 **Learning:** Found multiple instances where form labels were visually placed next to inputs but lacked semantic connection via `htmlFor` and `id` attributes. This breaks screen reader support and reduces the clickable hit area for inputs, especially impacting mobile users.
 **Action:** Always ensure `<label>` tags use `htmlFor` mapping to the input's `id` to guarantee programmatic association and better UX.
+## 2026-06-23 - Table Checkbox Contextual Labels\n**Learning:** In data tables with multiple checkboxes, screen reader users cannot distinguish between generic 'Select' labels. The row-level checkboxes need individual context linking them to their corresponding data row.\n**Action:** Use dynamic `aria-label` attributes for row-level checkboxes (e.g., `aria-label={\`Select ${itemName}\`}`) to provide individual context, rather than a static string.
