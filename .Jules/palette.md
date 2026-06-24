@@ -1,3 +1,6 @@
 ## 2026-05-01 - Form Accessibility
 **Learning:** Found multiple instances where form labels were visually placed next to inputs but lacked semantic connection via `htmlFor` and `id` attributes. This breaks screen reader support and reduces the clickable hit area for inputs, especially impacting mobile users.
 **Action:** Always ensure `<label>` tags use `htmlFor` mapping to the input's `id` to guarantee programmatic association and better UX.
+## 2025-02-16 - Form UX & Accessibility Learnings
+**Learning:** For optimal form UX and accessibility, especially with async submission (like Auth operations in InsForge), it's crucial to disable inputs (`disabled={loading}`) during submission to prevent users from modifying state mid-flight. Furthermore, explicitly providing `autoComplete` attributes (e.g., `one-time-code`, `name`, `email`, `new-password`/`current-password`) and mapping `<label>` tags with `htmlFor` matching input `id` drastically improves screen reader compatibility and browser autofill experiences.
+**Action:** Always verify that input forms have matching `id`/`htmlFor` label bindings, leverage the HTML `autoComplete` attributes, and disable all inputs when waiting for a loading state to finish.
