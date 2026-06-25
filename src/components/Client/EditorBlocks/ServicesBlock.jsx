@@ -11,6 +11,7 @@ const ServicesBlock = ({ profile, setProfile }) => {
       {profile.services.map((srv, idx) => (
         <div key={idx} style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
           <Input 
+            aria-label={`Service ${idx + 1}`}
             value={srv} 
             onChange={(e) => { 
               const n = [...profile.services]; 
@@ -19,6 +20,8 @@ const ServicesBlock = ({ profile, setProfile }) => {
             }} 
           />
           <Button 
+            aria-label={`Remove service ${idx + 1}`}
+            title={`Remove service ${idx + 1}`}
             variant="danger-light" 
             size="icon"
             onClick={(e) => { 
