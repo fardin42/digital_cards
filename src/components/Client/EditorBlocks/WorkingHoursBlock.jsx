@@ -88,6 +88,8 @@ const WorkingHoursBlock = ({ profile, setProfile }) => {
             <div key={idx} style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '16px', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', position: 'relative' }}>
               
               <button 
+                aria-label="Remove working hours"
+                title="Remove working hours"
                 onClick={(e) => { e.preventDefault(); setProfile({...profile, working_hours: profile.working_hours.filter((_, i) => i !== idx)}); }} 
                 style={{ position: 'absolute', top: '-8px', right: '-8px', background: '#e53e3e', color: '#fff', border: 'none', borderRadius: '50%', width: '22px', height: '22px', fontSize: '10px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}
               >✕</button>
@@ -104,7 +106,7 @@ const WorkingHoursBlock = ({ profile, setProfile }) => {
                    ) : (
                      <div style={{ display: 'flex', gap: '4px' }}>
                        <Input type="text" value={wh.days} onChange={(e) => updateField("days", e.target.value)} placeholder="Type day..." />
-                       <Button variant="secondary" size="icon" onClick={(e) => { e.preventDefault(); updateField("days", "Monday - Friday"); }}>↺</Button>
+                       <Button aria-label="Reset to Monday - Friday" title="Reset to Monday - Friday" variant="secondary" size="icon" onClick={(e) => { e.preventDefault(); updateField("days", "Monday - Friday"); }}>↺</Button>
                      </div>
                    )}
                 </div>
