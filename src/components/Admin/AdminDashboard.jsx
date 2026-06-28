@@ -171,7 +171,7 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
             <thead>
               <tr>
                 <th style={{width: '40px'}}>
-                  <input type="checkbox" onChange={toggleSelectAll} checked={totalClients > 0 && selectedIds.length === totalClients} />
+                  <input type="checkbox" aria-label="Select all clients" onChange={toggleSelectAll} checked={totalClients > 0 && selectedIds.length === totalClients} />
                 </th>
                 <th>Client</th>
                 <th>Card Path</th>
@@ -192,7 +192,7 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
                 return (
                   <tr key={client.id || i} className={isSelected ? 'selected-row' : ''}>
                     <td>
-                      <input type="checkbox" checked={isSelected} onChange={(e) => { e.stopPropagation(); toggleSelect(i); }} />
+                      <input type="checkbox" aria-label={`Select client ${client.name || 'unknown'}`} checked={isSelected} onChange={(e) => { e.stopPropagation(); toggleSelect(i); }} />
                     </td>
                     <td>
                       {isEditing ? (
