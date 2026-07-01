@@ -12,6 +12,7 @@ const ServicesBlock = ({ profile, setProfile }) => {
         <div key={idx} style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
           <Input 
             value={srv} 
+            aria-label={`Service ${idx + 1}`}
             onChange={(e) => { 
               const n = [...profile.services]; 
               n[idx] = e.target.value; 
@@ -21,6 +22,8 @@ const ServicesBlock = ({ profile, setProfile }) => {
           <Button 
             variant="danger-light" 
             size="icon"
+            aria-label={`Remove service ${srv ? `"${srv}"` : idx + 1}`}
+            title={`Remove service ${srv ? `"${srv}"` : idx + 1}`}
             onClick={(e) => { 
               e.preventDefault(); 
               setProfile({...profile, services: profile.services.filter((_, i) => i !== idx)}); 
