@@ -171,7 +171,12 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
             <thead>
               <tr>
                 <th style={{width: '40px'}}>
-                  <input type="checkbox" onChange={toggleSelectAll} checked={totalClients > 0 && selectedIds.length === totalClients} />
+                  <input
+                    type="checkbox"
+                    onChange={toggleSelectAll}
+                    checked={totalClients > 0 && selectedIds.length === totalClients}
+                    aria-label="Select all clients"
+                  />
                 </th>
                 <th>Client</th>
                 <th>Card Path</th>
@@ -192,7 +197,12 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
                 return (
                   <tr key={client.id || i} className={isSelected ? 'selected-row' : ''}>
                     <td>
-                      <input type="checkbox" checked={isSelected} onChange={(e) => { e.stopPropagation(); toggleSelect(i); }} />
+                      <input
+                        type="checkbox"
+                        checked={isSelected}
+                        onChange={(e) => { e.stopPropagation(); toggleSelect(i); }}
+                        aria-label={`Select ${client.name || 'client'}`}
+                      />
                     </td>
                     <td>
                       {isEditing ? (
@@ -228,8 +238,18 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
                     <td className="actions-cell">
                       {isEditing ? (
                         <div className="edit-actions">
-                          <button className="btn-save-edit" onClick={() => handleSaveEdit(client)} title="Save"><Save size={16} /></button>
-                          <button className="btn-cancel-edit" onClick={() => setEditingIdx(null)} title="Cancel"><X size={16} /></button>
+                          <button
+                            className="btn-save-edit"
+                            onClick={() => handleSaveEdit(client)}
+                            title={`Save ${client.name || 'client'}`}
+                            aria-label={`Save ${client.name || 'client'}`}
+                          ><Save size={16} /></button>
+                          <button
+                            className="btn-cancel-edit"
+                            onClick={() => setEditingIdx(null)}
+                            title={`Cancel editing ${client.name || 'client'}`}
+                            aria-label={`Cancel editing ${client.name || 'client'}`}
+                          ><X size={16} /></button>
                         </div>
                       ) : (
                         <div className="row-action-group">
@@ -238,20 +258,27 @@ export default function AdminDashboard({ clients, toggleCardStatus, deleteClient
                             <button
                               className={`btn-status-toggle ${card.status === 'active' ? 'btn-toggle-suspend' : 'btn-toggle-activate'}`}
                               onClick={(e) => handleToggleStatus(card, e)}
-                              title={card.status === 'active' ? 'Suspend' : 'Activate'}
+                              title={card.status === 'active' ? `Suspend ${client.name || 'client'}` : `Activate ${client.name || 'client'}`}
+                              aria-label={card.status === 'active' ? `Suspend ${client.name || 'client'}` : `Activate ${client.name || 'client'}`}
                             >
                               {card.status === 'active' ? <ShieldOff size={15}/> : <ShieldCheck size={15}/>}
                             </button>
                           )}
                           {/* Kebab menu for edit/delete */}
                           <div className="dropdown-container" ref={menuOpenIdx === i ? menuRef : null}>
-                            <button className="action-btn" onClick={(e) => { e.stopPropagation(); setMenuOpenIdx(menuOpenIdx === i ? null : i); }}>
+                            <button
+                              className="action-btn"
+                              onClick={(e) => { e.stopPropagation(); setMenuOpenIdx(menuOpenIdx === i ? null : i); }}
+                              aria-label={`Actions for ${client.name || 'client'}`}
+                              aria-haspopup="menu"
+                              aria-expanded={menuOpenIdx === i}
+                            >
                               <MoreHorizontal size={18} />
                             </button>
                             {menuOpenIdx === i && (
-                              <div className="dropdown-menu">
-                                <button onClick={(e) => handleStartEdit(client, i, e)} className="dropdown-item"><Edit size={14}/> Update Info</button>
-                                <button onClick={(e) => handleDelete(client, e)} className="dropdown-item text-danger"><Trash2 size={14}/> Delete</button>
+                              <div className="dropdown-menu" role="menu">
+                                <button role="menuitem" onClick={(e) => handleStartEdit(client, i, e)} className="dropdown-item"><Edit size={14}/> Update Info</button>
+                                <button role="menuitem" onClick={(e) => handleDelete(client, e)} className="dropdown-item text-danger"><Trash2 size={14}/> Delete</button>
                               </div>
                             )}
                           </div>
